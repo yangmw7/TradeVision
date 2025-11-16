@@ -40,10 +40,12 @@ public enum ErrorCode {
     // 시스템 관련 (9xxx)
     INTERNAL_SERVER_ERROR("9001", "서버 내부 오류가 발생했습니다"),
     EXTERNAL_API_ERROR("9002", "외부 API 호출 중 오류가 발생했습니다"),
-    DATABASE_ERROR("9003", "데이터베이스 오류가 발생했습니다"),
-    INVALID_INPUT("9004", "잘못된 입력값입니다"),
-    RESOURCE_NOT_FOUND("9005", "요청한 리소스를 찾을 수 없습니다"),
-    NETWORK_ERROR("9006", "인터넷 연결을 확인해주세요");
+    EXTERNAL_API_UNAVAILABLE("9003", "외부 API 서버에 일시적으로 접근할 수 없습니다"),
+    DATABASE_ERROR("9004", "데이터베이스 오류가 발생했습니다"),
+    INVALID_INPUT("9005", "잘못된 입력값입니다"),
+    RESOURCE_NOT_FOUND("9006", "요청한 리소스를 찾을 수 없습니다"),
+    NETWORK_ERROR("9007", "인터넷 연결을 확인해주세요"),
+    STOCK_NOT_FOUND("3005", "종목을 찾을 수 없습니다");
 
     private final String code;     // 에러 코드
     private final String message;  // 한국어 에러 메시지
