@@ -1,0 +1,63 @@
+# TradeVision - Docker Compose 설정 (개발 환경)
+
+version: '3.8'
+
+services:
+  # MariaDB 데이터베이스
+  mariadb:
+    image: mariadb:10.6
+    container_name: tradevision-mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tradevision
+      MYSQL_USER: tradevision
+      MYSQL_PASSWORD: tradevision123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max_connections=200
+      --innodb_buffer_pool_size=256M
+    networks:
+      - tradevision-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Spring Boot Backend (선택적 - 로컬 개발 시에는 IDE에서 직접 실행 권장)
+  # backend:
+  #   build:
+  #     context: ../tradevision
+  #     dockerfile: ../docker/Dockerfile
+  #   container_name: tradevision-backend
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     SPRING_PROFILES_ACTIVE: dev
+  #     DB_URL: jdbc:mariadb://mariadb:3306/tradevision?characterEncoding=UTF-8
+  #     DB_USERNAME: tradevision
+  #     DB_PASSWORD: tradevision123
+  #     JWT_SECRET: ${JWT_SECRET:-dev-secret-key-change-this}
+  #     OPENAI_API_KEY: ${OPENAI_API_KEY}
+  #     KIS_APP_KEY: ${KIS_APP_KEY}
+  #     KIS_APP_SECRET: ${KIS_APP_SECRET}
+  #   depends_on:
+  #     mariadb:
+  #       condition: service_healthy
+  #   networks:
+  #     - tradevision-network
+
+volumes:
+  mariadb_data:
+    driver: local
+
+networks:
+  tradevision-network:
+    driver: bridge

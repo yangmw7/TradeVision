@@ -1,0 +1,70 @@
+# TradeVision - Git Ignore 파일
+
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+### Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+gradle-app.setting
+.gradletasknamecache
+
+### Spring Boot ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IDE ###
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+
+### OS ###
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+
+### 로그 파일 ###
+*.log
+logs/
+*.log.*
+
+### 환경 변수 ###
+.env
+.env.local
+.env.*.local
+*.env
+
+### 업로드 파일 ###
+uploads/
+temp/
+static/uploads/
+
+### 데이터베이스 ###
+*.db
+*.sqlite
+*.sql.backup
+
+### 기타 ###
+*.pid
+*.seed
+*.pid.lock
+node_modules/
+dist/
+coverage/

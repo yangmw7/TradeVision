@@ -1,0 +1,131 @@
+# TradeVision - AI 기반 주식 차트 분석 학습 플랫폼
+# Spring Boot 메인 설정 파일
+
+spring:
+  application:
+    name: tradevision
+
+  # 프로필 설정
+  profiles:
+    active: dev
+
+  # 데이터베이스 설정 (MariaDB)
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${DB_URL:jdbc:mariadb://localhost:3306/tradevision?characterEncoding=UTF-8}
+    username: ${DB_USERNAME:tradevision}
+    password: ${DB_PASSWORD:tradevision123}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Flyway가 스키마 관리하므로 validate 사용
+    show-sql: false  # Production에서는 false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+        use_sql_comments: true
+        default_batch_fetch_size: 100
+
+  # Flyway 마이그레이션 설정
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    encoding: UTF-8
+
+  # 파일 업로드 설정
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB  # 이미지 업로드 크기 제한
+      max-request-size: 10MB
+      file-size-threshold: 1MB
+
+  # 캐시 설정
+  cache:
+    type: simple  # Production에서는 Redis 권장
+    cache-names: stockData, learningContents
+
+# 로깅 설정
+logging:
+  level:
+    root: INFO
+    com.tradevision: DEBUG
+    org.springframework.web: INFO
+    org.hibernate: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/tradevision.log
+    max-size: 10MB
+    max-history: 30
+
+# JWT 설정
+jwt:
+  secret: ${JWT_SECRET:your-secret-key-change-this-in-production-min-256-bits-long}
+  access-token-validity: 3600000  # 1시간 (milliseconds)
+  refresh-token-validity: 604800000  # 7일 (milliseconds)
+
+# 외부 API 설정
+external-api:
+  kis:
+    base-url: ${KIS_API_URL:https://openapi.koreainvestment.com:9443}
+    app-key: ${KIS_APP_KEY:}
+    app-secret: ${KIS_APP_SECRET:}
+  openai:
+    base-url: ${OPENAI_API_URL:https://api.openai.com/v1}
+    api-key: ${OPENAI_API_KEY:}
+    model: gpt-4-vision-preview
+    timeout: 10000  # 10초
+
+# Resilience4j Circuit Breaker 설정
+resilience4j:
+  circuitbreaker:
+    instances:
+      kisApi:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 60s
+        permitted-number-of-calls-in-half-open-state: 3
+      openaiApi:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+  retry:
+    instances:
+      kisApi:
+        max-attempts: 3
+        wait-duration: 1s
+        exponential-backoff-multiplier: 2
+      openaiApi:
+        max-attempts: 2
+        wait-duration: 2s
+
+# Springdoc OpenAPI (Swagger) 설정
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+# 서버 설정
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+  compression:
+    enabled: true
+  shutdown: graceful
