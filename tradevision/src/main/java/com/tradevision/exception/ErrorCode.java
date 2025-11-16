@@ -17,6 +17,7 @@ public enum ErrorCode {
     USER_NOT_FOUND("2001", "사용자를 찾을 수 없습니다"),
     INVALID_PASSWORD("2002", "비밀번호가 올바르지 않습니다"),
     INVALID_PASSWORD_FORMAT("2003", "비밀번호는 8자 이상, 영문+숫자 조합이어야 합니다"),
+    ANALYSIS_NOT_FOUND("2004", "분석 결과를 찾을 수 없습니다"),
 
     // 주식 데이터 관련 (3xxx)
     INVALID_STOCK_CODE("3001", "유효하지 않은 종목 코드입니다"),
