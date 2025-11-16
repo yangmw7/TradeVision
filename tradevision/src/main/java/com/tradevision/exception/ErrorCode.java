@@ -17,6 +17,7 @@ public enum ErrorCode {
     USER_NOT_FOUND("2001", "사용자를 찾을 수 없습니다"),
     INVALID_PASSWORD("2002", "비밀번호가 올바르지 않습니다"),
     INVALID_PASSWORD_FORMAT("2003", "비밀번호는 8자 이상, 영문+숫자 조합이어야 합니다"),
+    ANALYSIS_NOT_FOUND("2004", "분석 결과를 찾을 수 없습니다"),
 
     // 주식 데이터 관련 (3xxx)
     INVALID_STOCK_CODE("3001", "유효하지 않은 종목 코드입니다"),
@@ -29,7 +30,6 @@ public enum ErrorCode {
     IMAGE_SIZE_EXCEEDED("4002", "이미지 크기는 5MB 이하로 제한됩니다"),
     AI_ANALYSIS_FAILED("4003", "AI 분석에 실패했습니다. 다시 시도해주세요"),
     CHART_NOT_DETECTED("4004", "업로드한 이미지에서 차트를 찾을 수 없습니다. 차트 이미지를 업로드해주세요"),
-    ANALYSIS_NOT_FOUND("4005", "분석 결과를 찾을 수 없습니다"),
     OPENAI_API_ERROR("4006", "AI 분석 서비스에 문제가 발생했습니다"),
     DAILY_LIMIT_EXCEEDED("4007", "오늘의 AI 분석 한도를 초과했습니다. 내일 다시 시도해주세요"),
 
