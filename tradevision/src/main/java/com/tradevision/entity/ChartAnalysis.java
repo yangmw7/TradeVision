@@ -62,7 +62,8 @@ public class ChartAnalysis {
      * AI 분석 결과 (JSON)
      * 패턴, 지지/저항선, 매매 의견 등
      */
-    @Column(name = "analysis_result", nullable = false, columnDefinition = "JSON")
+    @Lob
+    @Column(name = "analysis_result", nullable = false, columnDefinition = "TEXT")
     private String analysisResult;
 
     /**

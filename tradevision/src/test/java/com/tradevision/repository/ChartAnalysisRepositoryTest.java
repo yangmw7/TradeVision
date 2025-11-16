@@ -25,10 +25,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  * ChartAnalysisRepository 단위 테스트
  */
 @DataJpaTest
+@org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase(replace = org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.ANY)
+@org.springframework.data.jpa.repository.config.EnableJpaAuditing
 @DisplayName("ChartAnalysisRepository 테스트")
 @org.springframework.test.context.TestPropertySource(properties = {
         "spring.flyway.enabled=false",
-        "spring.jpa.hibernate.ddl-auto=create-drop"
+        "spring.jpa.hibernate.ddl-auto=create-drop",
+        "spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect",
+        "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
 })
 class ChartAnalysisRepositoryTest {
 
