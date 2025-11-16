@@ -6,7 +6,8 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Implement user authentication system with JWT and complete Phase 2 foundational setup\n\n- JWT authentication with access/refresh token (JJWT 0.12.3)\n- User and RefreshToken entities with JPA auditing\n- BCrypt password hashing (strength 10)\n- Custom exception handling with Korean error messages\n- Security configuration (CSRF disabled, stateless sessions)\n- Spring Data JPA repositories\n- Comprehensive validation on DTOs\n- GlobalExceptionHandler for consistent error responses\n- Unit and integration tests for authentication flow\n- Flyway database migrations for all tables\n- Configuration files for dev/test/prod environments\n- Docker Compose for MariaDB development database\n- Base infrastructure (AsyncConfig, CorsConfig, Resilience4j)\n\nAPI Endpoints:\n- POST /api/auth/signup (회원가입)\n- POST /api/auth/login (로그인)\n- POST /api/auth/refresh (토큰 갱신)\n\nTest Coverage: 21/21 core authentication tests passing\n\nGenerated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git push:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []
