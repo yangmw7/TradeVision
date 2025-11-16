@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeVision | 민드우름 포트폴리오</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Noto Sans KR을 기본으로 하되, Inter도 포함하여 영문/숫자 가독성 향상 */
+        body { 
+            font-family: 'Inter', 'Noto Sans KR', sans-serif; 
+        }
+        /* 헤더의 굵은 텍스트는 Inter 선호 */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* 스크롤 애니메이션을 위한 CSS */
+        .scroll-target {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-target.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 네비게이션 활성 링크 스타일 */
+        .nav-link.active {
+            color: #2563eb; /* text-blue-600 */
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm shadow-md">
+        <div class="container mx-auto max-w-6xl px-6">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Brand -->
+                <a href="#" class="text-2xl font-bold text-gray-900">
+                    Trade<span class="text-blue-600">Vision</span>
+                </a>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-600 transition-colors duration-300">About</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-blue-600 transition-colors duration-300">Skills</a>
+                    <a href="#project" class="nav-link text-gray-600 hover:text-blue-600 transition-colors duration-300">Project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container mx-auto max-w-6xl p-6 md:p-12">
+
+        <!-- Section 1: About Me & Contact -->
+        <section id="about" class="mb-20 pt-20 -mt-16"> <!-- pt-20 -mt-16 for nav offset -->
+            <div class="flex flex-col md:flex-row items-center bg-gradient-to-br from-white to-blue-50 p-8 rounded-lg shadow-lg">
+                <!-- Profile Image Placeholder -->
+                <img src="https://placehold.co/150x150/e0e7ff/3730a3?text=Profile" 
+                     alt="민드우름 프로필" 
+                     class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-lg mb-6 md:mb-0 md:mr-10 border-4 border-white">
+                
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900">민드우름</h1>
+                    <p class="text-xl md:text-2xl text-blue-600 font-medium mt-2">
+                        기술과 데이터로 투자 의사결정을 돕는 풀스택 개발자
+                    </p>
+                    
+                    <!-- Contact Links -->
+                    <div class="flex justify-center md:justify-start space-x-4 mt-6">
+                        <a href="mailto:yangmw7@naver.com" class="flex items-center text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors duration-300 px-4 py-2 rounded-full shadow-sm font-medium">
+                            <!-- Email Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                            Email
+                        </a>
+                        <a href="https://github.com/yangmw7" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors duration-300 px-4 py-2 rounded-full shadow-sm font-medium">
+                            <!-- GitHub Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About Me Details -->
+            <div class="mt-12 bg-white p-8 rounded-lg shadow-lg scroll-target transition-all duration-300 hover:shadow-xl">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-900">About Me</h2>
+                <div class="space-y-4 text-lg text-gray-700 leading-relaxed">
+                    <p>저는 실생활의 문제를 기술로 해결하는 것에 큰 보람을 느끼는 개발자입니다. 특히 Spring Boot와 React를 활용한 풀스택 개발에 강점을 가지고 있으며, 사용자 중심의 UI/UX 설계를 중요하게 생각합니다. 동양미래대학교 컴퓨터소프트웨어공학과 재학 중이며, Korea SGS에서의 인턴십을 통해 실무 경험을 쌓았습니다.</p>
+                    <p>졸업 프로젝트로 Unity, Spring Boot, React를 결합한 게임 플랫폼 'Looper'를 개발하며 MCP 서버 기술과 AI 챗봇 시스템 구축 경험을 쌓았습니다.</p>
+                    <p>이번 TradeVision 프로젝트는 제가 직접 주식 투자를 하며 느꼈던 불편함과 필요성을 바탕으로 기획했습니다. 초보 투자자도 쉽게 차트 분석을 배우고 활용할 수 있는 플랫폼을 만들고자 했으며, AI 기술을 접목하여 더 나은 투자 의사결정을 지원하는 것이 목표입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Skills -->
+        <section id="skills" class="mb-20 pt-20 -mt-16"> <!-- pt-20 -mt-16 for nav offset -->
+            <h2 class="text-3xl font-bold text-center mb-10">Technical Skills</h2>
+            <div class="bg-white p-8 rounded-lg shadow-lg scroll-target transition-all duration-300 hover:shadow-xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Frontend -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-blue-700">프론트엔드</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 rounded-full px-4 py-1 text-sm font-medium">React</span>
+                            <span class="bg-blue-100 text-blue-800 rounded-full px-4 py-1 text-sm font-medium">JavaScript</span>
+                            <span class="bg-blue-100 text-blue-800 rounded-full px-4 py-1 text-sm font-medium">Tailwind CSS</span>
+                            <span class="bg-blue-100 text-blue-800 rounded-full px-4 py-1 text-sm font-medium">React-Dropzone</span>
+                            <span class="bg-blue-100 text-blue-800 rounded-full px-4 py-1 text-sm font-medium">Recharts</span>
+                        </div>
+                    </div>
+                    <!-- Backend -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-green-700">백엔드</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 rounded-full px-4 py-1 text-sm font-medium">Spring Boot</span>
+                            <span class="bg-green-100 text-green-800 rounded-full px-4 py-1 text-sm font-medium">Java</span>
+                            <span class="bg-green-100 text-green-800 rounded-full px-4 py-1 text-sm font-medium">MariaDB</span>
+                            <span class="bg-green-100 text-green-800 rounded-full px-4 py-1 text-sm font-medium">JWT Authentication</span>
+                            <span class="bg-green-100 text-green-800 rounded-full px-4 py-1 text-sm font-medium">RESTful API</span>
+                        </div>
+                    </div>
+                    <!-- AI & Analysis -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-700">AI & Analysis</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-800 rounded-full px-4 py-1 text-sm font-medium">OpenAI GPT-4 Vision</span>
+                            <span class="bg-purple-100 text-purple-800 rounded-full px-4 py-1 text-sm font-medium">Claude API</span>
+                            <span class="bg-purple-100 text-purple-800 rounded-full px-4 py-1 text-sm font-medium">LangChain</span>
+                        </div>
+                    </div>
+                    <!-- DevOps & Tools -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-yellow-700">DevOps & Tools</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-yellow-100 text-yellow-800 rounded-full px-4 py-1 text-sm font-medium">Git</span>
+                            <span class="bg-yellow-100 text-yellow-800 rounded-full px-4 py-1 text-sm font-medium">Docker</span>
+                            <span class="bg-yellow-100 text-yellow-800 rounded-full px-4 py-1 text-sm font-medium">한국투자증권 OpenAPI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Project - TradeVision -->
+        <section id="project" class="pt-20 -mt-16"> <!-- pt-20 -mt-16 for nav offset -->
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-6">Project: TradeVision</h2>
+            
+            <!-- Project Main Image Placeholder -->
+            <img src="https://placehold.co/1200x600/cceeff/004466?text=TradeVision+Main+Image" 
+                 alt="TradeVision 메인 이미지" 
+                 class="w-full rounded-lg shadow-lg mb-12 object-cover aspect-[2/1] scroll-target">
+
+            <!-- Problem Definition -->
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-12 scroll-target transition-all duration-300 hover:shadow-xl">
+                <h3 class="text-2xl font-semibold mb-4">문제 정의 (The Problem)</h3>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    요즘 같은 고물가, 고환율 시대에 주식 투자를 하는 사람들이 대부분입니다. 하지만 많은 투자자들이 차트 분석 없이 단순히 가치투자나 감으로 매매를 하고 있습니다. 차트 분석이 무의미하다고 생각하는 사람들도 많지만, 제가 직접 투자하며 느낀 바로는 5일선 터치, 피보나치 되돌림 등의 기술적 분석이 상당히 유용한 지표가 되는 경우가 많았습니다. 특히 최근에는 프로그램 매매와 알고리즘 매매가 활성화되면서, 특정 기술적 지표에 따라 자동으로 매수/매도 주문이 체결되는 경우가 많습니다. 신기하게도 주요 지지선이나 저항선에서 딱 맞춰 거래량이 몰리는 현상을 자주 목격할 수 있습니다. 그러나 차트 분석 기법의 이름이나 적용 방법을 모르는 초보 투자자들은 이러한 기회를 놓치고 있으며, 어떤 시간봉에서 어떤 분석 기법을 사용해야 하는지에 대한 가이드도 부족한 상황입니다. 이러한 문제를 해결하기 위해 AI 기반의 차트 분석과 함께 학습 기능을 제공하는 통합 플랫폼이 필요하다고 판단했습니다.
+                </p>
+            </div>
+
+            <!-- Architecture -->
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-12 scroll-target transition-all duration-300 hover:shadow-xl">
+                <h3 class="text-2xl font-semibold mb-4">아키텍처 / 설계 (Architecture)</h3>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    사용자 친화적인 투자 분석 플랫폼을 위해 React 기반의 SPA(Single Page Application) 구조를 채택했습니다. 백엔드는 Spring Boot를 사용하여 RESTful API를 설계했으며, MariaDB를 통해 사용자 정보와 분석 이력을 관리합니다. 실시간 주식 데이터는 한국투자증권 OpenAPI를 연동하여 제공하고, 차트 이미지 분석에는 OpenAI GPT-4 Vision API를 활용했습니다. 봉 종류별 최적 매매기법 추천 로직은 백엔드에서 처리하며, 프론트엔드에서는 직관적인 UI/UX를 통해 초보자도 쉽게 사용할 수 있도록 설계했습니다. JWT 기반 인증을 통해 사용자별 분석 이력과 학습 진도를 관리하며, 학습 페이지는 별도 모듈로 구성하여 확장 가능한 구조를 만들었습니다.
+                </p>
+                <!-- Architecture Diagram Placeholder -->
+                <img src="https://placehold.co/800x500/f3e8ff/581c87?text=Architecture+Diagram" 
+                     alt="아키텍처 다이어그램" 
+                     class="w-full max-w-4xl mx-auto rounded-lg shadow-sm border border-gray-200">
+            </div>
+
+            <!-- Core Features -->
+            <h3 class="text-3xl font-bold text-center mb-10 mt-20">핵심 기능</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col scroll-target transition-all duration-300 hover:shadow-xl">
+                    <!-- Feature 1 Image Placeholder -->
+                    <img src="https://placehold.co/600x400/dcfce7/14532d?text=Feature+1+Screenshot" 
+                         alt="핵심 기능 1 스크린샷" 
+                         class="w-full rounded-lg shadow-sm mb-6 border border-gray-200 aspect-video object-cover">
+                    <h4 class="text-2xl font-semibold mb-3 text-green-700">AI 기반 실시간 차트 분석 시스템</h4>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        사용자가 주식 코드를 입력하면 한국투자증권 OpenAPI를 통해 실시간 차트 데이터를 가져오거나, 직접 차트 이미지를 업로드할 수 있습니다. 사용자가 분석하고자 하는 봉 종류(1분봉/5분봉/15분봉/60분봉/일봉/주봉/월봉)를 선택하면, 분석 버튼을 누르기 전에 자동으로 알림창이 표시되어 해당 봉 종류에 최적화된 매매기법을 추천합니다. 예를 들어 1분봉을 선택하면 "스캘핑, 단기 RSI, 단기 이동평균선 크로스"를, 일봉을 선택하면 "피보나치 되돌림, 추세선 분석, 이동평균선(20, 60, 120), 지지/저항선"을 추천하는 방식입니다. 사용자가 추천 매매기법을 확인한 후 분석 버튼을 누르면 OpenAI GPT-4 Vision API가 차트 이미지를 분석하여 현재 패턴, 지지/저항선, 주요 이동평균선 위치 등을 파악하고, 매수/매도/관망 중 하나의 의견과 구체적인 근거를 제시합니다. 이를 통해 초보 투자자도 전문가 수준의 차트 분석 인사이트를 얻을 수 있습니다.
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg flex flex-col scroll-target transition-all duration-300 hover:shadow-xl">
+                    <!-- Feature 2 Image Placeholder -->
+                    <img src="https://placehold.co/600x400/fffbeb/b45309?text=Feature+2+Screenshot" 
+                         alt="핵심 기능 2 스크린샷" 
+                         class="w-full rounded-lg shadow-sm mb-6 border border-gray-200 aspect-video object-cover">
+                    <h4 class="text-2xl font-semibold mb-3 text-yellow-700">체계적인 기술적 분석 학습 시스템</h4>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        차트 분석 용어와 기법을 모르는 초보 투자자를 위한 별도의 학습 페이지를 구현했습니다. 이동평균선, 볼린저밴드, MACD, RSI, 피보나치 되돌림 등 주요 기술적 분석 기법을 카테고리별로 분류하고, 각 기법의 개념, 계산 방법, 실제 차트 예시, 활용 전략을 상세히 설명합니다. 특히 각 분석 기법이 어떤 시간봉에서 효과적인지, 장단점은 무엇인지, 다른 지표와 어떻게 조합하면 좋은지까지 실용적인 정보를 제공합니다. React 기반의 인터랙티브한 UI를 통해 실제 차트 데이터에 각 지표를 적용해보며 학습할 수 있도록 구성했습니다. 사용자의 학습 진도는 데이터베이스에 저장되어 개인별 맞춤 학습 경로를 제공합니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role & Contributions -->
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-12 scroll-target transition-all duration-300 hover:shadow-xl">
+                <h3 class="text-2xl font-semibold mb-4">나의 역할 및 기여 (My Role)</h3>
+                <ul class="list-disc list-inside space-y-3 text-lg text-gray-700 leading-relaxed">
+                    <li>프로젝트 기획 및 전체 아키텍처 설계 (Spring Boot + React 풀스택 구조)</li>
+                    <li>한국투자증권 OpenAPI 연동 및 실시간 주식 데이터 처리 로직 구현</li>
+                    <li>OpenAI GPT-4 Vision API를 활용한 차트 이미지 분석 시스템 개발</li>
+                    <li>봉 종류별 최적 매매기법 추천 알고리즘 설계 및 구현</li>
+                    <li>React 기반 사용자 인터페이스 설계 및 구현 (Tailwind CSS 활용)</li>
+                    <li>기술적 분석 학습 페이지 콘텐츠 기획 및 개발</li>
+                    <li>JWT 기반 사용자 인증 및 분석 이력 관리 시스템 구축</li>
+                    <li>MariaDB 데이터베이스 스키마 설계 및 최적화</li>
+                </ul>
+            </div>
+
+            <!-- Results -->
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-12 scroll-target transition-all duration-300 hover:shadow-xl">
+                <h3 class="text-2xl font-semibold mb-4">결과 및 성과 (Results)</h3>
+                <ul class="list-disc list-inside space-y-3 text-lg text-gray-700 leading-relaxed">
+                    <li>초보 투자자도 3분 이내에 전문적인 차트 분석 결과를 받을 수 있는 직관적인 UI/UX 구현</li>
+                    <li>7가지 시간봉 종류에 대한 20개 이상의 기술적 분석 기법 매칭 로직 완성</li>
+                    <li>AI 분석 응답 시간 평균 5초 이내 달성 (이미지 업로드부터 분석 결과까지)</li>
+                    <li>실시간 API 연동을 통한 최신 차트 데이터 제공으로 정확도 향상</li>
+                    <li>학습 페이지를 통한 사용자 자립도 증가 및 서비스 재방문율 향상 기대</li>
+                </ul>
+            </div>
+
+            <!-- Retrospective -->
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-12 scroll-target transition-all duration-300 hover:shadow-xl">
+                <h3 class="text-2xl font-semibold mb-6 text-center">회고 (Retrospective)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Learnings -->
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3 text-indigo-700">
+                            <span class="mr-2">💡</span> 배운 점 (Learnings)
+                        </h4>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            OpenAI Vision API를 활용한 이미지 분석 프로세스와 프롬프트 엔지니어링의 중요성을 깊이 이해하게 되었습니다. 특히 차트 분석이라는 도메인 특화된 작업에서 AI에게 정확한 컨텍스트와 기대 출력 형식을 제공하는 것이 결과 품질에 큰 영향을 미친다는 것을 배웠습니다. 또한 실시간 금융 데이터를 다루며 API 호출 최적화와 에러 핸들링의 중요성을 체감했습니다. 사용자 중심 설계를 위해 복잡한 차트 분석 개념을 어떻게 직관적으로 전달할 것인가에 대해 많이 고민하며 UI/UX 설계 역량을 키울 수 있었습니다.
+                        </p>
+                    </div>
+                    <!-- Improvements -->
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3 text-rose-700">
+                            <span class="mr-2">🚀</span> 개선점 (Improvements)
+                        </h4>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            향후 백테스팅 기능을 추가하여 과거 데이터로 AI의 분석 정확도를 검증하고 개선하고 싶습니다. 또한 사용자들의 실제 매매 결과를 익명으로 수집하여 분석 알고리즘의 성공률을 지속적으로 업데이트하는 피드백 루프를 구축하고 싶습니다. 기술적으로는 WebSocket을 활용한 실시간 차트 업데이트 기능과, 사용자별 맞춤형 알림 시스템(특정 기술적 패턴 발생 시 푸시 알림)을 추가하여 서비스의 실용성을 더욱 높이고 싶습니다. 마지막으로 React Testing Library와 Jest를 활용한 단위 테스트 및 통합 테스트를 작성하여 코드 안정성을 확보하고자 합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> <!-- End of Main Container -->
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="hidden fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-500 py-8 mt-12 border-t border-gray-200">
+        <p>&copy; 2025 민드우름. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollTargets = document.querySelectorAll('.scroll-target');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+
+            // 1. Scroll-to-Top Button Logic
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.remove('hidden');
+                } else {
+                    scrollToTopBtn.classList.add('hidden');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // 2. Fade-in Animation on Scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            scrollTargets.forEach(target => {
+                observer.observe(target);
+            });
+
+            // 3. Active Nav Link Highlighting
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -60% 0px', threshold: 0.1 }); // Adjust rootMargin to highlight when section is more central
+
+            sections.forEach(section => {
+                navObserver.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
