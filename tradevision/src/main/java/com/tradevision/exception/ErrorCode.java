@@ -36,6 +36,7 @@ public enum ErrorCode {
     // 학습 관련 (5xxx)
     LEARNING_CONTENT_NOT_FOUND("5001", "학습 콘텐츠를 찾을 수 없습니다"),
     TECHNIQUE_NOT_FOUND("5002", "매매기법을 찾을 수 없습니다"),
+    PROGRESS_NOT_FOUND("5003", "학습 진행도를 찾을 수 없습니다"),
 
     // 시스템 관련 (9xxx)
     INTERNAL_SERVER_ERROR("9001", "서버 내부 오류가 발생했습니다"),
