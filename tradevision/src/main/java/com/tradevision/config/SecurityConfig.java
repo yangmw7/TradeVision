@@ -83,6 +83,25 @@ public class SecurityConfig {
                                 "/api/auth/refresh"
                         ).permitAll()
 
+                        // Subscription plans - guest users can view pricing
+                        .requestMatchers(
+                                "/api/subscriptions/plans",
+                                "/api/subscriptions/usage/**"
+                        ).permitAll()
+
+                        // Learning content - allow guest preview
+                        .requestMatchers(
+                                "/api/learning/modules",
+                                "/api/learning/modules/*/contents"
+                        ).permitAll()
+
+                        // Trading techniques - allow guest preview
+                        .requestMatchers(
+                                "/api/techniques",
+                                "/api/techniques/*/category/*",
+                                "/api/techniques/*/difficulty/*"
+                        ).permitAll()
+
                         // Swagger UI 접근 허용
                         .requestMatchers(
                                 "/swagger-ui/**",
