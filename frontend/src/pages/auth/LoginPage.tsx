@@ -1,0 +1,116 @@
+import React, { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import { Button, Input, Card } from '../../components/ui';
+import { LogIn } from 'lucide-react';
+
+const LoginPage: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = (location.state as any)?.from?.pathname || '/';
+
+  const validate = () => {
+    const newErrors: typeof errors = {};
+
+    if (!email.trim()) {
+      newErrors.email = '이메일을 입력해주세요.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = '올바른 이메일 형식이 아닙니다.';
+    }
+
+    if (!password) {
+      newErrors.password = '비밀번호를 입력해주세요.';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validate()) return;
+
+    setLoading(true);
+    try {
+      await login({ email, password });
+      navigate(from, { replace: true });
+    } catch (error) {
+      // Error is already handled in AuthContext with toast
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white px-4">
+      <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl mb-4">
+            <span className="text-white font-bold text-2xl">T</span>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">TradeVision</h1>
+          <p className="text-gray-600">AI 기반 차트 분석 플랫폼</p>
+        </div>
+
+        {/* Login Form */}
+        <Card className="p-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">로그인</h2>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input
+              label="이메일"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={errors.email}
+              placeholder="이메일을 입력하세요"
+              fullWidth
+              autoFocus
+            />
+
+            <Input
+              label="비밀번호"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={errors.password}
+              placeholder="비밀번호를 입력하세요"
+              fullWidth
+            />
+
+            <Button
+              type="submit"
+              loading={loading}
+              fullWidth
+              size="lg"
+              className="mt-6"
+            >
+              <LogIn size={20} />
+              로그인
+            </Button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-gray-600">
+              계정이 없으신가요?{' '}
+              <Link to="/signup" className="text-primary-500 hover:text-primary-600 font-medium">
+                회원가입
+              </Link>
+            </p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;
