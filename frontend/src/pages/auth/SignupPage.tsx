@@ -24,7 +24,7 @@ const SignupPage: React.FC = () => {
   // Redirect if already authenticated
   useEffect(() => {
     if (!authLoading && isAuthenticated) {
-      navigate('/dashboard', { replace: true });
+      navigate('/', { replace: true });
     }
   }, [isAuthenticated, authLoading, navigate]);
 
@@ -69,8 +69,8 @@ const SignupPage: React.FC = () => {
     setLoading(true);
     try {
       await signup({ email, password, nickname, investmentLevel });
-      // After successful signup, user is auto-logged in, redirect to dashboard
-      navigate('/dashboard', { replace: true });
+      // After successful signup, user is auto-logged in, redirect to landing page
+      navigate('/', { replace: true });
     } catch (error) {
       // Error is already handled in AuthContext with toast
     } finally {

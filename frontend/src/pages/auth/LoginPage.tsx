@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button, Input, Card } from '../../components/ui';
 import { LogIn } from 'lucide-react';
@@ -12,14 +12,11 @@ const LoginPage: React.FC = () => {
 
   const { login, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const from = (location.state as any)?.from?.pathname || '/dashboard';
 
   // Redirect if already authenticated
   useEffect(() => {
     if (!authLoading && isAuthenticated) {
-      navigate('/dashboard', { replace: true });
+      navigate('/', { replace: true });
     }
   }, [isAuthenticated, authLoading, navigate]);
 
@@ -48,7 +45,7 @@ const LoginPage: React.FC = () => {
     setLoading(true);
     try {
       await login({ email, password });
-      navigate(from, { replace: true });
+      navigate('/', { replace: true });
     } catch (error) {
       // Error is already handled in AuthContext with toast
     } finally {
