@@ -8,7 +8,7 @@ export const chartsApi = {
     formData.append('file', file);
 
     const response = await apiClient.post<ChartAnalysis>(
-      '/api/charts/upload',
+      '/api/chart-analysis',
       formData,
       {
         headers: {
@@ -22,25 +22,25 @@ export const chartsApi = {
   // Analyze uploaded chart
   analyzeChart: async (chartId: number): Promise<ChartAnalysis> => {
     const response = await apiClient.post<ChartAnalysis>(
-      `/api/charts/analyze/${chartId}`
+      `/api/chart-analysis/analyze/${chartId}`
     );
     return response.data;
   },
 
   // Get analysis history
   getHistory: async (): Promise<AnalysisHistory[]> => {
-    const response = await apiClient.get<AnalysisHistory[]>('/api/charts/history');
+    const response = await apiClient.get<AnalysisHistory[]>('/api/chart-analysis/history');
     return response.data;
   },
 
   // Get specific analysis
   getAnalysis: async (id: number): Promise<ChartAnalysis> => {
-    const response = await apiClient.get<ChartAnalysis>(`/api/charts/history/${id}`);
+    const response = await apiClient.get<ChartAnalysis>(`/api/chart-analysis/${id}`);
     return response.data;
   },
 
   // Delete analysis
   deleteAnalysis: async (id: number): Promise<void> => {
-    await apiClient.delete(`/api/charts/${id}`);
+    await apiClient.delete(`/api/chart-analysis/${id}`);
   },
 };

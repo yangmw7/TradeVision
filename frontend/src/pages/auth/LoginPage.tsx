@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button, Input, Card } from '../../components/ui';
@@ -10,11 +10,18 @@ const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
-  const { login } = useAuth();
+  const { login, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = (location.state as any)?.from?.pathname || '/';
+  const from = (location.state as any)?.from?.pathname || '/dashboard';
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!authLoading && isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, authLoading, navigate]);
 
   const validate = () => {
     const newErrors: typeof errors = {};
@@ -50,20 +57,20 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-dark-bg-primary px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-accent-blue rounded-2xl mb-4">
             <span className="text-white font-bold text-2xl">T</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">TradeVision</h1>
-          <p className="text-gray-600">AI 기반 차트 분석 플랫폼</p>
+          <h1 className="text-3xl font-bold text-dark-text-primary mb-2">TradeVision</h1>
+          <p className="text-dark-text-secondary">AI 기반 차트 분석 플랫폼</p>
         </div>
 
         {/* Login Form */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">로그인</h2>
+          <h2 className="text-2xl font-bold text-dark-text-primary mb-6">로그인</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
@@ -100,9 +107,9 @@ const LoginPage: React.FC = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-600">
+            <p className="text-dark-text-secondary">
               계정이 없으신가요?{' '}
-              <Link to="/signup" className="text-primary-500 hover:text-primary-600 font-medium">
+              <Link to="/signup" className="text-accent-blue hover:text-accent-blue/80 font-medium">
                 회원가입
               </Link>
             </p>

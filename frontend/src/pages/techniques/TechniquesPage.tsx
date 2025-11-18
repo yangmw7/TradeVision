@@ -110,7 +110,7 @@ const TechniquesPage: React.FC = () => {
 
   const getDifficultyVariant = (
     difficulty: string
-  ): 'success' | 'warning' | 'danger' => {
+  ): 'success' | 'warning' | 'danger' | 'info' => {
     switch (difficulty) {
       case 'BEGINNER':
         return 'success';

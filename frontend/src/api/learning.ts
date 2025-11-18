@@ -70,7 +70,7 @@ export const learningApi = {
 
   // Get learning statistics
   getStats: async (): Promise<LearningStats> => {
-    const response = await apiClient.get<LearningStats>('/api/learning/progress/stats');
+    const response = await apiClient.get<LearningStats>('/api/learning/stats');
     return response.data;
   },
 };

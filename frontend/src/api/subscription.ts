@@ -36,19 +36,19 @@ export interface SubscriptionRequest {
 }
 
 export const subscriptionApi = {
-  getPlans: () => client.get('/subscriptions/plans'),
+  getPlans: () => client.get('/api/subscriptions/plans'),
 
-  getCurrentSubscription: () => client.get('/subscriptions/current'),
+  getCurrentSubscription: () => client.get('/api/subscriptions/current'),
 
-  getSubscriptionHistory: () => client.get('/subscriptions/history'),
+  getSubscriptionHistory: () => client.get('/api/subscriptions/history'),
 
-  subscribe: (data: SubscriptionRequest) => client.post('/subscriptions/subscribe', data),
+  subscribe: (data: SubscriptionRequest) => client.post('/api/subscriptions/subscribe', data),
 
   cancelSubscription: (reason?: string) =>
-    client.post('/subscriptions/cancel', null, { params: { reason } }),
+    client.post('/api/subscriptions/cancel', null, { params: { reason } }),
 
   getUsageStats: (actionType: string, sessionId?: string) =>
-    client.get(`/subscriptions/usage/${actionType}`, { params: { sessionId } }),
+    client.get(`/api/subscriptions/usage/${actionType}`, { params: { sessionId } }),
 };
 
 export default subscriptionApi;

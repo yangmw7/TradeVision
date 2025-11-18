@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody, Button, Loading, Badge } from '../../components/ui';
 import { chartsApi } from '../../api';
 import type { ChartAnalysis, AnalysisHistory } from '../../types';
@@ -31,22 +30,26 @@ const AnalysisPage: React.FC = () => {
     }
   };
 
+  const processFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      toast.error('이미지 파일만 업로드 가능합니다.');
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('파일 크기는 10MB를 초과할 수 없습니다.');
+      return;
+    }
+
+    setSelectedFile(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    setCurrentAnalysis(null);
+  };
+
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (!file.type.startsWith('image/')) {
-        toast.error('이미지 파일만 업로드 가능합니다.');
-        return;
-      }
-
-      if (file.size > 10 * 1024 * 1024) {
-        toast.error('파일 크기는 10MB를 초과할 수 없습니다.');
-        return;
-      }
-
-      setSelectedFile(file);
-      setPreviewUrl(URL.createObjectURL(file));
-      setCurrentAnalysis(null);
+      processFile(file);
     }
   };
 
@@ -58,10 +61,7 @@ const AnalysisPage: React.FC = () => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     if (file) {
-      const fakeEvent = {
-        target: { files: [file] },
-      } as React.ChangeEvent<HTMLInputElement>;
-      handleFileSelect(fakeEvent);
+      processFile(file);
     }
   };
 

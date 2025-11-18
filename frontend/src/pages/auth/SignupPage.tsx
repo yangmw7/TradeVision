@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button, Input, Card } from '../../components/ui';
@@ -18,8 +18,15 @@ const SignupPage: React.FC = () => {
     nickname?: string;
   }>({});
 
-  const { signup } = useAuth();
+  const { signup, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!authLoading && isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, authLoading, navigate]);
 
   const validate = () => {
     const newErrors: typeof errors = {};
@@ -62,8 +69,8 @@ const SignupPage: React.FC = () => {
     setLoading(true);
     try {
       await signup({ email, password, nickname, investmentLevel });
-      // After successful signup, redirect to login page
-      navigate('/login', { replace: true });
+      // After successful signup, user is auto-logged in, redirect to dashboard
+      navigate('/dashboard', { replace: true });
     } catch (error) {
       // Error is already handled in AuthContext with toast
     } finally {
@@ -72,20 +79,20 @@ const SignupPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-dark-bg-primary px-4 py-12">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-accent-blue rounded-2xl mb-4">
             <span className="text-white font-bold text-2xl">T</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">TradeVision</h1>
-          <p className="text-gray-600">AI 기반 차트 분석 플랫폼</p>
+          <h1 className="text-3xl font-bold text-dark-text-primary mb-2">TradeVision</h1>
+          <p className="text-dark-text-secondary">AI 기반 차트 분석 플랫폼</p>
         </div>
 
         {/* Signup Form */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">회원가입</h2>
+          <h2 className="text-2xl font-bold text-dark-text-primary mb-6">회원가입</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
@@ -131,13 +138,13 @@ const SignupPage: React.FC = () => {
             />
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-dark-text-primary mb-2">
                 투자 경험 수준
               </label>
               <select
                 value={investmentLevel}
                 onChange={(e) => setInvestmentLevel(e.target.value as 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED')}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 border border-dark-border rounded-md bg-dark-bg-card text-dark-text-primary focus:outline-none focus:border-accent-blue transition-all duration-200"
               >
                 <option value="BEGINNER">초보자 (투자 경험 1년 미만)</option>
                 <option value="INTERMEDIATE">중급자 (투자 경험 1~3년)</option>
@@ -158,9 +165,9 @@ const SignupPage: React.FC = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-600">
+            <p className="text-dark-text-secondary">
               이미 계정이 있으신가요?{' '}
-              <Link to="/login" className="text-primary-500 hover:text-primary-600 font-medium">
+              <Link to="/login" className="text-accent-blue hover:text-accent-blue/80 font-medium">
                 로그인
               </Link>
             </p>
