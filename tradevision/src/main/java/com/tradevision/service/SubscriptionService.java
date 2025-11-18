@@ -72,8 +72,7 @@ public class SubscriptionService {
         }
 
         SubscriptionPlan newPlan = getPlanById(planId);
-        User user = new User();
-        user.setId(userId);
+        User user = User.builder().id(userId).build();
 
         LocalDateTime endDate = calculateEndDate(newPlan);
 

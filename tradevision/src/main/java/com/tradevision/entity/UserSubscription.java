@@ -39,6 +39,7 @@ public class UserSubscription {
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
+    @Builder.Default
     @Column(name = "auto_renew", nullable = false)
     private Boolean autoRenew = false;
 

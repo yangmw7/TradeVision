@@ -22,10 +22,7 @@ public class UsageTrackingService {
 
     @Transactional
     public void trackUsage(Long userId, String sessionId, String actionType, Long resourceId, String metadata, HttpServletRequest request) {
-        User user = userId != null ? new User() : null;
-        if (user != null) {
-            user.setId(userId);
-        }
+        User user = userId != null ? User.builder().id(userId).build() : null;
 
         UsageTracking usage = UsageTracking.builder()
                 .user(user)

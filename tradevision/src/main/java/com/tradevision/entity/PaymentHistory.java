@@ -37,6 +37,7 @@ public class PaymentHistory {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
 
+    @Builder.Default
     @Column(nullable = false, length = 3)
     private String currency = "KRW";
 
