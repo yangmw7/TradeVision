@@ -21,20 +21,20 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={`
-            px-4 py-2.5 border rounded-lg text-base
-            bg-dark-bg-secondary text-dark-text-primary
+            px-4 py-2.5 border rounded-md text-base
+            bg-dark-bg-card text-dark-text-primary
             transition-all duration-200
-            focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-            disabled:bg-dark-bg-primary disabled:cursor-not-allowed
+            focus:outline-none focus:border-accent-blue
+            disabled:opacity-50 disabled:cursor-not-allowed
             placeholder:text-dark-text-muted
-            ${error ? 'border-danger' : 'border-dark-border-primary'}
+            ${error ? 'border-accent-red' : 'border-dark-border'}
             ${fullWidth ? 'w-full' : ''}
             ${className}
           `}
           {...props}
         />
         {error && (
-          <p className="mt-1.5 text-sm text-danger">{error}</p>
+          <p className="mt-1.5 text-sm text-accent-red">{error}</p>
         )}
         {helperText && !error && (
           <p className="mt-1.5 text-sm text-dark-text-secondary">{helperText}</p>

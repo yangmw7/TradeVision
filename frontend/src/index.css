@@ -6,12 +6,12 @@
 
 @layer base {
   * {
-    @apply border-dark-border-primary;
+    @apply border-dark-border;
   }
 
   body {
     @apply bg-dark-bg-primary text-dark-text-primary font-sans antialiased;
-    background-image: linear-gradient(135deg, #0a0e17 0%, #151924 100%);
+    background-color: #0a0e17;
   }
 
   html {
@@ -19,65 +19,33 @@
   }
 
   ::selection {
-    @apply bg-primary-500/30 text-dark-text-primary;
+    @apply bg-accent-blue/20 text-dark-text-primary;
   }
 }
 
 @layer components {
   /* Custom scrollbar - dark theme */
   .scrollbar-thin::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
 
   .scrollbar-thin::-webkit-scrollbar-track {
-    @apply bg-dark-bg-secondary;
-    border-radius: 4px;
+    background: #151924;
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    @apply bg-dark-border-secondary rounded-lg;
+    background: #2d3748;
+    border-radius: 3px;
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-500/50;
-  }
-
-  /* Glassmorphism card */
-  .glass-card {
-    @apply bg-dark-bg-tertiary/50 backdrop-blur-md border border-dark-border-primary;
-  }
-
-  /* Animated gradient border */
-  .gradient-border {
-    position: relative;
-    background: linear-gradient(135deg, rgba(26, 31, 46, 0.8) 0%, rgba(30, 36, 51, 0.6) 100%);
-  }
-
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, #00d4ff, #a78bfa, #ff3366);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.5;
+    background: #3a4255;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary-400 via-accent-purple to-primary-600 bg-clip-text text-transparent;
-  }
-
-  .glow-text {
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
   }
 }

@@ -19,14 +19,14 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg-primary disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-md transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variantStyles = {
-    primary: 'bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 shadow-sm hover:shadow-glow',
-    secondary: 'bg-dark-bg-elevated text-dark-text-primary hover:bg-dark-bg-secondary focus:ring-primary-500 border border-dark-border-primary',
-    outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-500/10 focus:ring-primary-500',
-    ghost: 'text-dark-text-secondary hover:bg-dark-bg-tertiary focus:ring-primary-500',
-    danger: 'bg-danger text-white hover:bg-danger-dark focus:ring-danger shadow-sm hover:shadow-md',
+    primary: 'bg-accent-blue text-white hover:bg-accent-blue/90',
+    secondary: 'bg-dark-bg-card text-dark-text-primary hover:bg-dark-bg-secondary border border-dark-border',
+    outline: 'border border-dark-border text-dark-text-primary hover:bg-dark-bg-card',
+    ghost: 'text-dark-text-secondary hover:bg-dark-bg-card',
+    danger: 'bg-accent-red text-white hover:bg-accent-red/90',
   };
 
   const sizeStyles = {

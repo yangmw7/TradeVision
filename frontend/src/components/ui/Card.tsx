@@ -8,8 +8,8 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ children, className = '', hover = false, onClick }) => {
-  const baseStyles = 'bg-dark-bg-tertiary border border-dark-border-primary rounded-lg shadow-card transition-all duration-200';
-  const hoverStyles = hover ? 'hover:shadow-card-hover hover:border-dark-border-secondary cursor-pointer' : '';
+  const baseStyles = 'bg-dark-bg-card border border-dark-border rounded-lg transition-all duration-200';
+  const hoverStyles = hover ? 'hover:border-accent-blue/30 cursor-pointer' : '';
   const clickableStyles = onClick ? 'cursor-pointer' : '';
 
   return (
@@ -40,7 +40,7 @@ export const CardFooter: React.FC<{ children: ReactNode; className?: string }> =
   children,
   className = '',
 }) => {
-  return <div className={`p-6 pt-4 border-t border-dark-border-primary ${className}`}>{children}</div>;
+  return <div className={`p-6 pt-4 border-t border-dark-border ${className}`}>{children}</div>;
 };
 
 export default Card;
