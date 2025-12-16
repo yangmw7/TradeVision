@@ -55,6 +55,19 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* Architecture Arrow Style */
+        .arch-arrow-v {
+            width: 0;
+            height: 2rem;
+            border-right: 2px dashed #9ca3af; /* gray-400 */
+        }
+        .arch-box {
+            @apply p-4 rounded-xl shadow-lg border-2 w-full text-center max-w-lg mx-auto transition-all duration-200 hover:shadow-xl;
+        }
+        .arch-label {
+            @apply text-sm text-gray-500 mt-1;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -87,7 +100,8 @@
                 <!-- Profile Image Placeholder -->
                 <img src="https://raw.githubusercontent.com/yangmw7/TradeVision/main/%EC%B7%A8%EC%97%85%EC%82%AC%EC%A7%84.jpg" 
                     alt="민드우름 프로필" 
-                    class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-lg mb-6 md:mb-0 md:mr-10 border-4 border-white">
+                    onerror="this.onerror=null;this.src='https://placehold.co/160x160/2563eb/ffffff?text=Profile';"
+                    class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-lg mb-6 md:mb-0 md:mr-10 border-4 border-white object-cover">
                 
                 <div class="flex-1 text-center md:text-left">
                     <h1 class="text-4xl md:text-5xl font-bold text-gray-900">민드우름</h1>
@@ -189,17 +203,88 @@
                 </p>
             </div>
 
-            <!-- Architecture (Image Replaced with 차트 분석 결과_웹.png) -->
+            <!-- Architecture (VISUAL DIAGRAM IMPLEMENTED HERE) -->
             <div class="bg-white p-8 rounded-lg shadow-lg mb-12 scroll-target transition-all duration-300 hover:shadow-xl">
                 <h3 class="text-2xl font-semibold mb-4">아키텍처 / 설계 (Architecture)</h3>
-                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                <p class="text-lg text-gray-700 leading-relaxed mb-10">
                     사용자 친화적인 투자 분석 플랫폼을 위해 React 기반의 SPA(Single Page Application) 구조를 채택했습니다. 백엔드는 Spring Boot를 사용하여 RESTful API를 설계했으며, MariaDB를 통해 사용자 정보와 분석 이력을 관리합니다. 실시간 주식 데이터는 한국투자증권 OpenAPI를 연동하여 제공하고, 차트 이미지 분석에는 OpenAI GPT-4 Vision API를 활용했습니다. 봉 종류별 최적 매매기법 추천 로직은 백엔드에서 처리하며, 프론트엔드에서는 직관적인 UI/UX를 통해 초보자도 쉽게 사용할 수 있도록 설계했습니다. JWT 기반 인증을 통해 사용자별 분석 이력과 학습 진도를 관리하며, 학습 페이지는 별도 모듈로 구성하여 확장 가능한 구조를 만들었습니다.
                 </p>
-                <!-- **변경 적용** 아키텍처 다이어그램 대신 차트 분석 결과를 시각적으로 보여줍니다. -->
-                <img src="https://raw.githubusercontent.com/yangmw7/TradeVision/main/%EC%B0%A8%ED%8A%B8%20%EB%B6%84%EC%84%9D%20%EA%B2%B0%EA%B3%BC_%EC%9B%B5.png" 
-                    alt="TradeVision 차트 분석 결과 웹 화면 (아키텍처 시각 자료)" 
-                    onerror="this.onerror=null;this.src='https://placehold.co/800x500/f3e8ff/581c87?text=Architecture+Diagram+Placeholder';"
-                    class="w-full max-w-4xl mx-auto rounded-lg shadow-sm border border-gray-200 max-h-96 object-contain">
+
+                <!-- ARCHITECTURE DIAGRAM START -->
+                <div class="p-6 bg-gray-50 border border-gray-200 rounded-lg max-w-2xl mx-auto">
+                    <p class="text-center text-xl font-bold text-gray-700 mb-6">TradeVision System Flow</p>
+
+                    <div class="flex flex-col items-center space-y-4">
+                        
+                        <!-- 1. Frontend (Client) -->
+                        <div class="arch-box bg-blue-100 border-blue-400">
+                            <p class="font-bold text-blue-700">1. Client / Frontend</p>
+                            <p class="text-sm text-blue-600">React SPA, Chart & Analysis UI</p>
+                        </div>
+                        <div class="arch-arrow-v"></div>
+
+                        <!-- 2. Backend (API Gateway) -->
+                        <div class="arch-box bg-green-100 border-green-500">
+                            <p class="font-bold text-green-800">2. API Gateway & Logic</p>
+                            <p class="text-sm text-green-700">Spring Boot (REST API, Strategy Matcher, JWT Auth)</p>
+                        </div>
+
+                        <!-- 3. Parallel Services/Data Access -->
+                        <div class="w-full relative py-4">
+                            <!-- Horizontal Line -->
+                            <div class="absolute inset-x-0 top-1/2 h-0.5 bg-gray-300"></div>
+
+                            <div class="flex justify-between relative z-10">
+                                
+                                <!-- Service 1: AI Analysis -->
+                                <div class="w-1/3 flex flex-col items-center px-2">
+                                    <div class="arch-arrow-v -mb-1 bg-white pt-2"></div>
+                                    <div class="arch-box !p-3 bg-purple-100 border-purple-500 shadow-md !max-w-none">
+                                        <p class="font-bold text-purple-800 text-base">AI Vision</p>
+                                        <p class="text-xs text-purple-700">GPT-4 Vision (차트 분석)</p>
+                                    </div>
+                                    <div class="arch-arrow-v -mt-1 bg-white pb-2 rotate-180"></div>
+                                </div>
+                                
+                                <!-- Service 2: External Data -->
+                                <div class="w-1/3 flex flex-col items-center px-2">
+                                    <div class="arch-arrow-v -mb-1 bg-white pt-2"></div>
+                                    <div class="arch-box !p-3 bg-yellow-100 border-yellow-500 shadow-md !max-w-none">
+                                        <p class="font-bold text-yellow-800 text-base">External Data</p>
+                                        <p class="text-xs text-yellow-700">KIS OpenAPI (실시간 주식)</p>
+                                    </div>
+                                    <div class="arch-arrow-v -mt-1 bg-white pb-2 rotate-180"></div>
+                                </div>
+
+                                <!-- Service 3: Database -->
+                                <div class="w-1/3 flex flex-col items-center px-2">
+                                    <div class="arch-arrow-v -mb-1 bg-white pt-2"></div>
+                                    <div class="arch-box !p-3 bg-indigo-100 border-indigo-500 shadow-md !max-w-none">
+                                        <p class="font-bold text-indigo-800 text-base">Database</p>
+                                        <p class="text-xs text-indigo-700">MariaDB (이력, 학습 관리)</p>
+                                    </div>
+                                    <div class="arch-arrow-v -mt-1 bg-white pb-2 rotate-180"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Result Consolidation & Final Response -->
+                        <div class="arch-arrow-v"></div>
+                        <div class="arch-box bg-green-100 border-green-500">
+                            <p class="font-bold text-green-800">4. Result Consolidation</p>
+                            <p class="text-sm text-green-700">AI 결과 + 전략 매칭 결과 통합</p>
+                        </div>
+
+                        <div class="arch-arrow-v"></div>
+
+                        <!-- 5. Display on Frontend -->
+                        <div class="arch-box bg-blue-100 border-blue-400">
+                            <p class="font-bold text-blue-700">5. Analysis Result Display</p>
+                            <p class="text-sm text-blue-600">사용자에게 최종 분석 정보 제공</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ARCHITECTURE DIAGRAM END -->
             </div>
             
             <!-- Demo Video Section -->
@@ -369,5 +454,3 @@
 
 </body>
 </html>
-
-
